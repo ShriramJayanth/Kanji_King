@@ -52,42 +52,56 @@ const KanjiDetailPage = ({ params }: { params: { id: string } }) => {
 //   }
 
   return (
-    <div className="min-h-[100vh] bg-customWhite flex flex-col items-center p-8">
+    <div className="min-h-[100vh] bg-customWhite flex flex-col items-center p-12">
       {/* Header */}
-      <div className="w-full max-w-3xl text-customWhite text-5xl font-bold bg-customBlue p-4 rounded-lg shadow-lg mb-6 text-center">
+      <div className="w-full max-w-5xl text-customWhite text-6xl font-bold bg-customBlue p-6 rounded-lg shadow-lg mb-8 text-center">
         Kanji Detail
       </div>
 
       {/* Content */}
-      <div className="w-full max-w-3xl bg-white rounded-lg shadow-lg p-6 flex flex-col gap-4">
-        <div className="text-center">
-          <h1 className="text-6xl font-bold text-customBlue mb-2">{kanji.character}</h1>
-          <p className="text-2xl text-gray-700">{kanji.meaning}</p>
+      <div className="w-full max-w-5xl bg-white rounded-lg shadow-lg p-10 flex flex-col gap-8">
+        <div className="flex flex-col md:flex-row items-center justify-between">
+          {/* Kanji Character and Meaning */}
+          <div className="text-center md:w-1/2">
+            <h1 className="text-7xl font-bold text-customBlue mb-4">{kanji.character}</h1>
+            <p className="text-3xl text-gray-700 mb-4">{kanji.meaning}</p>
+            <div className="grid grid-cols-2 gap-6 text-xl mt-6">
+              <div>
+                <span className="font-semibold">Strokes:</span> {kanji.strokes}
+              </div>
+              <div>
+                <span className="font-semibold">JLPT Level:</span> {kanji.jlptLevel}
+              </div>
+              <div>
+                <span className="font-semibold">Lesson:</span> {kanji.lesson}
+              </div>
+              <div>
+                <span className="font-semibold">Kun Yomi:</span> {kanji.kunYomi}
+              </div>
+              <div>
+                <span className="font-semibold">On Yomi:</span> {kanji.onYomi}
+              </div>
+            </div>
+          </div>
+
+          {/* Stroke Order GIF */}
+          <div className="md:w-1/2 mt-8 md:mt-0 flex justify-center">
+            <img
+              src="/assets/kanji_sumu_stroke_order.gif" // Replace with actual GIF path
+              alt="Kanji Stroke Order"
+              width={400}  // Increased size for better visibility
+              height={400}
+              className="object-contain"
+            />
+          </div>
         </div>
-        <div className="grid grid-cols-2 gap-4 text-lg">
-          <div>
-            <span className="font-semibold">Strokes:</span> {kanji.strokes}
-          </div>
-          <div>
-            <span className="font-semibold">JLPT Level:</span> {kanji.jlptLevel}
-          </div>
-          <div>
-            <span className="font-semibold">Lesson:</span> {kanji.lesson}
-          </div>
-          <div>
-            <span className="font-semibold">Kun Yomi:</span> {kanji.kunYomi}
-          </div>
-          <div>
-            <span className="font-semibold">On Yomi:</span> {kanji.onYomi}
-          </div>
-        </div>
-        
+
         {/* Compounds Section */}
-        <div className="mt-6">
-          <h2 className="text-3xl font-semibold text-customBlue mb-4">Compounds</h2>
-          <ul className="list-disc pl-5 space-y-2">
+        <div className="mt-8">
+          <h2 className="text-4xl font-semibold text-customBlue mb-6">Compounds</h2>
+          <ul className="list-disc pl-7 space-y-4 text-lg">
             {kanji.compounds.map((compound, index) => (
-              <li key={index} className="text-lg">
+              <li key={index} className="text-xl">
                 <span className="font-semibold">{compound.word}</span> ({compound.reading}): {compound.meaning}
               </li>
             ))}
