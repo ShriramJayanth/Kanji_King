@@ -1,5 +1,7 @@
+"use client";
 // app/N4/[id]/page.tsx
-import { notFound } from 'next/navigation';
+import { notFound } from "next/navigation";
+import { useParams } from "next/navigation";
 
 interface Compound {
   word: string;
@@ -18,8 +20,8 @@ interface KanjiDetail {
   compounds: Compound[];
 }
 
-const kanjiData: KanjiDetail[] = [
-  {
+const kanjiData: { [key: string]: KanjiDetail } = {
+  住: {
     character: "住",
     meaning: "live",
     strokes: 7,
@@ -31,25 +33,42 @@ const kanjiData: KanjiDetail[] = [
       { word: "住む", reading: "すむ", meaning: "to live" },
       { word: "住民", reading: "じゅうみん", meaning: "inhabitants" },
       { word: "住宅", reading: "じゅうたく", meaning: "residence" },
-      { word: "住所 ", reading: "じゅうしょ", meaning: "address"}
-    ]
+      { word: "住所", reading: "じゅうしょ", meaning: "address" },
+    ],
+  },
+  所: {
+    character: "所",
+    meaning: "place; location",
+    strokes: 8,
+    jlptLevel: "N4",
+    lesson: 1,
+    kunYomi: "ところ",
+    onYomi: "ショ",
+    compounds: [
+      { word: "場所", reading: "ばしょ", meaning: "place" },
+      {
+        word: "所在地",
+        reading: "しょざいち",
+        meaning: "location; place of residence",
+      },
+      {
+        word: "事務所",
+        reading: "じむしょ",
+        meaning: "office; business office",
+      },
+      { word: "所", reading: "ところ", meaning: "place; spot" },
+    ],
+  },
+};
+
+const KanjiDetailPage = () => {
+  const parms = useParams();
+  const id = parms.id as string;
+  const kanjichar = decodeURIComponent(id);
+  const kanji = kanjiData[kanjichar];
+  if (!kanji) {
+    notFound();
   }
-  // Add more kanji data here
-];
-
-// This function generates static paths for each kanji character
-export async function generateStaticParams() {
-  return kanjiData.map((kanji) => ({
-    id: kanji.character,
-  }));
-}
-
-const KanjiDetailPage = ({ params }: { params: { id: string } }) => {
-  const kanji = kanjiData[0];
-
-//   if (!kanji) {
-//     notFound();
-//   }
 
   return (
     <div className="min-h-[100vh] bg-customWhite flex flex-col items-center p-12">
@@ -63,14 +82,17 @@ const KanjiDetailPage = ({ params }: { params: { id: string } }) => {
         <div className="flex flex-col md:flex-row items-center justify-between">
           {/* Kanji Character and Meaning */}
           <div className="text-center md:w-1/2">
-            <h1 className="text-7xl font-bold text-customBlue mb-4">{kanji.character}</h1>
+            <h1 className="text-7xl font-bold text-customBlue mb-4">
+              {kanji.character}
+            </h1>
             <p className="text-3xl text-gray-700 mb-4">{kanji.meaning}</p>
             <div className="grid grid-cols-2 gap-6 text-xl mt-6">
               <div>
                 <span className="font-semibold">Strokes:</span> {kanji.strokes}
               </div>
               <div>
-                <span className="font-semibold">JLPT Level:</span> {kanji.jlptLevel}
+                <span className="font-semibold">JLPT Level:</span>{" "}
+                {kanji.jlptLevel}
               </div>
               <div>
                 <span className="font-semibold">Lesson:</span> {kanji.lesson}
@@ -87,9 +109,9 @@ const KanjiDetailPage = ({ params }: { params: { id: string } }) => {
           {/* Stroke Order GIF */}
           <div className="md:w-1/2 mt-8 md:mt-0 flex justify-center">
             <img
-              src="/assets/kanji_sumu_stroke_order.gif" // Replace with actual GIF path
+              src={`/assets/${id}.gif`} // Replace with actual GIF path
               alt="Kanji Stroke Order"
-              width={400}  // Increased size for better visibility
+              width={400} // Increased size for better visibility
               height={400}
               className="object-contain"
             />
@@ -98,11 +120,14 @@ const KanjiDetailPage = ({ params }: { params: { id: string } }) => {
 
         {/* Compounds Section */}
         <div className="mt-8">
-          <h2 className="text-4xl font-semibold text-customBlue mb-6">Compounds</h2>
+          <h2 className="text-4xl font-semibold text-customBlue mb-6">
+            Compounds
+          </h2>
           <ul className="list-disc pl-7 space-y-4 text-lg">
             {kanji.compounds.map((compound, index) => (
               <li key={index} className="text-xl">
-                <span className="font-semibold">{compound.word}</span> ({compound.reading}): {compound.meaning}
+                <span className="font-semibold text-3xl">{compound.word}</span> (
+                {compound.reading}): {compound.meaning}
               </li>
             ))}
           </ul>
