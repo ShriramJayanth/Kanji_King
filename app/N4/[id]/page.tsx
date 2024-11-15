@@ -59,6 +59,18 @@ const kanjiData: { [key: string]: KanjiDetail } = {
       { word: "所", reading: "ところ", meaning: "place; spot" },
     ],
   },
+  京: {
+    character: "京",
+    meaning: "capital",
+    strokes: 8,
+    jlptLevel: "N4",
+    lesson: 1,
+    kunYomi: "-",
+    onYomi: "キョウ",
+    compounds:[
+      {word:"京都",reading:"きょうと",meaning:"kyōto"}
+    ]
+  }
 };
 
 const KanjiDetailPage = () => {
@@ -80,7 +92,6 @@ const KanjiDetailPage = () => {
       {/* Content */}
       <div className="w-full max-w-5xl bg-white rounded-lg shadow-lg p-10 flex flex-col gap-8">
         <div className="flex flex-col md:flex-row items-center justify-between">
-          {/* Kanji Character and Meaning */}
           <div className="text-center md:w-1/2">
             <h1 className="text-7xl font-bold text-customBlue mb-4">
               {kanji.character}
@@ -109,9 +120,9 @@ const KanjiDetailPage = () => {
           {/* Stroke Order GIF */}
           <div className="md:w-1/2 mt-8 md:mt-0 flex justify-center">
             <img
-              src={`/assets/${id}.gif`} // Replace with actual GIF path
+              src={`/assets/${id}.gif`}
               alt="Kanji Stroke Order"
-              width={400} // Increased size for better visibility
+              width={400}
               height={400}
               className="object-contain"
             />
@@ -126,8 +137,8 @@ const KanjiDetailPage = () => {
           <ul className="list-disc pl-7 space-y-4 text-lg">
             {kanji.compounds.map((compound, index) => (
               <li key={index} className="text-xl">
-                <span className="font-semibold text-3xl">{compound.word}</span> (
-                {compound.reading}): {compound.meaning}
+                <span className="font-semibold text-3xl">{compound.word}</span>{" "}
+                ({compound.reading}): {compound.meaning}
               </li>
             ))}
           </ul>
