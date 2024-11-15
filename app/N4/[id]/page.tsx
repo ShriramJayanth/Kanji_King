@@ -67,10 +67,119 @@ const kanjiData: { [key: string]: KanjiDetail } = {
     lesson: 1,
     kunYomi: "-",
     onYomi: "キョウ",
-    compounds:[
-      {word:"京都",reading:"きょうと",meaning:"kyōto"}
+    compounds: [{ word: "京都", reading: "きょうと", meaning: "kyōto" }],
+  },
+  都: {
+    character: "都",
+    meaning: "metropolis; capital; city",
+    strokes: 11,
+    jlptLevel: "N4",
+    lesson: 1,
+    kunYomi: "みやこ",
+    onYomi: "ト, ツ",
+    compounds: [
+      { word: "東京都", reading: "とうきょうと", meaning: "Tokyo Metropolis" },
+      { word: "都会", reading: "とかい", meaning: "city; urban area" },
+      { word: "首都", reading: "しゅと", meaning: "capital city" },
+      { word: "都", reading: "みやこ", meaning: "capital; metropolis" },
+      {
+        word: "都合がいい",
+        reading: "つごうがいい",
+        meaning: "convenient; suitable",
+      },
+    ],
+  },
+  府: {
+    character: "府",
+    meaning: "prefecture; government office",
+    strokes: 8,
+    jlptLevel: "N4",
+    lesson: 1,
+    kunYomi: "ふ",
+    onYomi: "フ",
+    compounds: [
+      { word: "大阪府", reading: "おおさかふ", meaning: "Osaka Prefecture" },
+      { word: "京都府", reading: "きょうとふ", meaning: "Kyoto Prefecture" },
+      { word: "府", reading: "ふ", meaning: "prefecture; government office" },
+      { word: "政府", reading: "せいふ", meaning: "government" },
+    ],
+  },
+  県:{
+    character: "県",
+    meaning: "prefecture",
+    strokes: 9,
+    jlptLevel: "N4",
+    lesson: 1,
+    kunYomi: "けん",
+    onYomi: "ケン",
+    compounds: [
+      { word: "東京都", reading: "とうきょうと", meaning: "Tokyo Metropolis" },
+      { word: "北海道", reading: "ほっかいどう", meaning: "Hokkaido" },
+      { word: "神奈川県", reading: "かながわけん", meaning: "Kanagawa Prefecture" },
+      { word: "県", reading: "けん", meaning: "prefecture" }
     ]
-  }
+  },
+  市:{
+    character: "市",
+    meaning: "city; market",
+    strokes: 5,
+    jlptLevel: "N4",
+    lesson: 1,
+    kunYomi: "いち",
+    onYomi: "シ",
+    compounds: [
+      { word: "大阪市", reading: "おおさかし", meaning: "Osaka City" },
+      { word: "東京都市", reading: "とうきょうし", meaning: "Tokyo Metropolitan Area" },
+      { word: "市", reading: "いち", meaning: "market; city" },
+      { word: "市長", reading: "しちょう", meaning: "mayor" }
+    ]
+  },
+  区:{
+    character: "区",
+    meaning: "ward; district",
+    strokes: 5,
+    jlptLevel: "N4",
+    lesson: 1,
+    kunYomi: "く",
+    onYomi: "ク",
+    compounds: [
+      { word: "港区", reading: "みなとく", meaning: "Minato Ward (Tokyo)" },
+      { word: "新宿区", reading: "しんじゅくく", meaning: "Shinjuku Ward (Tokyo)" },
+      { word: "区", reading: "く", meaning: "ward; district" },
+      { word: "区役所", reading: "くやくしょ", meaning: "ward office" }
+    ]
+  },
+  町:{
+    character: "町",
+    meaning: "town; neighborhood",
+    strokes: 6,
+    jlptLevel: "N4",
+    lesson: 1,
+    kunYomi: "まち",
+    onYomi: "チョウ, トウ",
+    compounds: [
+      { word: "町田市", reading: "まちだし", meaning: "Machida City" },
+      { word: "下町", reading: "したまち", meaning: "downtown; old town" },
+      { word: "町", reading: "まち", meaning: "town; neighborhood" },
+      { word: "商店町", reading: "しょうてんまち", meaning: "shopping street" },
+      { word: "町長", reading: "ちょうちょう", meaning: "town mayor" }
+    ]
+  },
+  村:{
+    character: "村",
+    meaning: "village",
+    strokes: 7,
+    jlptLevel: "N4",
+    lesson: 1,
+    kunYomi: "むら",
+    onYomi: "ソン",
+    compounds: [
+      { word: "村", reading: "むら", meaning: "village" },
+      { word: "村長", reading: "そんちょう", meaning: "village chief; village mayor" },
+      { word: "村人", reading: "むらびと", meaning: "villager" },
+      { word: "農村", reading: "のうそん", meaning: "rural village" }
+    ]
+  }  
 };
 
 const KanjiDetailPage = () => {
